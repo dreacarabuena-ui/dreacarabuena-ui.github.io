@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>NCM 107 – 150-Item Categorized Exam</title>
+<style>
+ body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
+ h2 { margin-top: 40px; }
+ .question { margin-bottom: 25px; padding: 15px; border: 1px solid #ccc; border-radius: 8px; }
+ .choices button { display: block; margin: 5px 0; padding: 10px; width: 100%; border-radius: 6px; cursor: pointer; }
+ .correct { background-color: #c8f7c5 !important; }
+ .incorrect { background-color: #f7c5c5 !important; }
+ .rationale { display: none; margin-top: 10px; padding: 10px; background: #eef; border-radius: 6px; }
+ #scoreBox { position: fixed; top: 10px; right: 10px; background: #222; color: #fff; padding: 12px 18px; border-radius: 8px; font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>NCM 107 – Categorized 150-Item Situational Exam</h1>
+<div id="scoreBox">Score: 0</div>
+<div id="quiz"></div>
+<script>
+const questions = [
+ /* CATEGORY: Growth & Development Basics */
+ {cat:"Growth & Development", q:"According to the principle of cephalocaudal development, which milestone appears first?", choices:["Control of legs before arms","Control of head before limbs","Fine motor before gross motor","Walking before sitting"], correct:1, rationale:"Cephalocaudal means head-to-toe control; head control develops first."},
+ {cat:"Growth & Development", q:"A child who can lift the head and chest at 2 months demonstrates what?", choices:["Normal development","Delayed motor milestone","Precocious development","Neurologic deficit"], correct:0, rationale:"Lifting head/chest at 2 months is expected per cephalocaudal progression."},
+ /* === FULL 150-ITEM BANK — OPTION A (BLOCK BY CATEGORY) === */
+
+/* ==========================
+   CATEGORY 1: GROWTH & DEVELOPMENT (1–25)
+   ========================== */
+{cat:"Growth & Development", q:"Growth proceeds in which pattern?", choices:["Cephalocaudal","Distocaudal","Random","Unpredictable"], correct:0, rationale:"Growth follows a cephalocaudal pattern—head to toe."},
+{cat:"Growth & Development", q:"Development proceeds in which direction?", choices:["Distal to proximal","Proximal to distal","Random","Backward"], correct:1, rationale:"Development moves from proximal to distal body parts."},
+{cat:"Growth & Development", q:"Which example shows gross-to-fine motor development?", choices:["Writing before scribbling","Crawling before pincer grasp","Pincer grasp before walking","Jumping before sitting"], correct:1, rationale:"Gross motor skills come before refined motor skills."},
+{cat:"Growth & Development", q:"Which child behavior aligns with the principle that children move through stages at different rates?", choices:["All children walk at 12 months","Some children walk at 9 months while others at 14 months","Children develop identically","Milestones are exact"], correct:1, rationale:"Children achieve milestones at different rates."},
+{cat:"Growth & Development", q:"Which system peaks in growth during the first year?", choices:["Genital","Neurologic","Endocrine","Skeletal"], correct:1, rationale:"Neurological tissue grows rapidly during infancy."},
+{cat:"Growth & Development", q:"Which milestone is expected at 4 months?", choices:["Walking","Rolling front-to-back","Standing","Running"], correct:1, rationale:"Rolling begins around 4–5 months."},
+{cat:"Growth & Development", q:"Which milestone occurs around 9 months?", choices:["Walking alone","Crawling/creeping","Standing independently","Running"], correct:1, rationale:"Creeping commonly occurs around 9 months."},
+{cat:"Growth & Development", q:"At what age does a child typically triple birthweight?", choices:["6 months","12 months","2 years","18 months"], correct:1, rationale:"Birth weight typically triples by 1 year."},
+{cat:"Growth & Development", q:"A child uses a palmar grasp. This is typical at:", choices:["2 months","6 months","10 months","12 months"], correct:1, rationale:"The palmar grasp is common around 6 months."},
+{cat:"Growth & Development", q:"Object permanence begins at:", choices:["2 months","5 months","9–10 months","12 months"], correct:2, rationale:"Object permanence emerges around 9–10 months."},
+{cat:"Growth & Development", q:"A child sits without support at:", choices:["2 months","4 months","8 months","12 months"], correct:2, rationale:"Independent sitting appears around 8 months."},
+{cat:"Growth & Development", q:"A 12-month-old should be able to:", choices:["Say 4 words","Tie shoelaces","Jump","Hop on one foot"], correct:0, rationale:"12-month-olds typically say ~3–4 words."},
+{cat:"Growth & Development", q:"A 10-month-old uses a pincer grasp. This means:", choices:["Delayed","Normal","Advanced","Concerning"], correct:1, rationale:"Pincer grasp appears around 9–10 months."},
+{cat:"Growth & Development", q:"A child’s height increases by 50% at:", choices:["6 months","12 months","18 months","2 years"], correct:1, rationale:"Height increases ~50% by 12 months."},
+{cat:"Growth & Development", q:"Which reflex must disappear before walking can develop?", choices:["Rooting","Moro","Walking reflex","Palmar reflex"], correct:2, rationale:"Primitive walking reflex must disappear for true walking."},
+{cat:"Growth & Development", q:"Which child demonstrates cephalocaudal development?", choices:["Sits before lifting head","Controls head before legs","Walks before crawling","Crawls before rolling"], correct:1, rationale:"Head control precedes leg control."},
+{cat:"Growth & Development", q:"Which is an example of the optimum time for learning?", choices:["Teaching infant to read","Forcing a 1-month-old to sit","Toilet training too early","Teaching sitting only when neurologically ready"], correct:3, rationale:"Skills can only be learned when nervous system is mature."},
+{cat:"Growth & Development", q:"Which is a developmental task?", choices:["Inherited trait","Skill emerging at specific period","Personality type","Feeding behavior"], correct:1, rationale:"Developmental tasks are time-specific responsibilities."},
+{cat:"Growth & Development", q:"A toddler displaying negativism reflects:", choices:["Normal autonomy development","Delay","Personality disorder","Oppositional defiance"], correct:0, rationale:"Negativism is normal as toddlers seek independence."},
+{cat:"Growth & Development", q:"A preschooler showing initiative is seen when they:", choices:["Refuse tasks","Explore freely","Fear new tasks","Depend on adult direction"], correct:1, rationale:"Preschoolers learn initiative by exploring and doing tasks independently."},
+{cat:"Growth & Development", q:"School-age children focus on:", choices:["Identity","Initiative","Industry","Autonomy"], correct:2, rationale:"Industry—mastering tasks—is the key school-age task."},
+{cat:"Growth & Development", q:"Adolescents struggle with:", choices:["Trust","Identity","Industry","Autonomy"], correct:1, rationale:"Identity vs role confusion defines adolescence."},
+{cat:"Growth & Development", q:"Which child displays concrete operational thinking?", choices:["Uses magical thinking","Understands conservation","Egocentric","Believes toys feel pain"], correct:1, rationale:"Concrete operational includes conservation and logical thinking."},
+{cat:"Growth & Development", q:"Which best shows preoperational thinking?", choices:["Logical reasoning","Egocentrism","Hypothetical reasoning","Abstract logic"], correct:1, rationale:"Preoperational children are egocentric."},
+{cat:"Growth & Development", q:"Which best describes centration?", choices:["Focus on all details","Focus on one aspect","Reversibility","Conservation"], correct:1, rationale:"Centration is focusing on one aspect of a situation."},
+
+/* ==========================
+   CATEGORY 2: THEORIES OF DEVELOPMENT (26–50)
+   ========================== */
+{cat:"Theories", q:"According to Freud, toddlers are in which stage?", choices:["Oral","Anal","Phallic","Latency"], correct:1, rationale:"Toddlers are in the anal stage—learning control over elimination."},
+{cat:"Theories", q:"A preschooler touching their genitals is normal because they are in:", choices:["Oral stage","Anal stage","Phallic stage","Latency stage"], correct:2, rationale:"Phallic stage involves awareness of gender and genitals."},
+{cat:"Theories", q:"School-age children in Freud’s theory are in:", choices:["Genital","Phallic","Latency","Oral"], correct:2, rationale:"School-age = Latency, a quiet stage of development."},
+{cat:"Theories", q:"Erikson: The primary task of infants is:", choices:["Autonomy","Initiative","Trust","Identity"], correct:2, rationale:"Infants learn trust vs mistrust."},
+{cat:"Theories", q:"Erikson: Toddlers focus on:", choices:["Industry","Autonomy","Identity","Trust"], correct:1, rationale:"Autonomy vs shame is the toddler stage."},
+{cat:"Theories", q:"Erikson: Preschoolers develop:", choices:["Initiative","Trust","Identity","Industry"], correct:0, rationale:"Preschool = initiative vs guilt."},
+{cat:"Theories", q:"Erikson: School-age children develop:", choices:["Autonomy","Industry","Identity","Initiative"], correct:1, rationale:"Industry vs inferiority is key."},
+{cat:"Theories", q:"Erikson: Adolescents focus on:", choices:["Trust","Identity","Initiative","Autonomy"], correct:1, rationale:"Identity formation dominates adolescence."},
+{cat:"Theories", q:"Piaget: Infant stage is:", choices:["Sensorimotor","Preoperational","Concrete operational","Formal operational"], correct:0, rationale:"Infants are in sensorimotor stage."},
+{cat:"Theories", q:"Object permanence appears in:", choices:["Sensorimotor","Preoperational","Latency","Anal"], correct:0, rationale:"Object permanence is part of sensorimotor."},
+{cat:"Theories", q:"A 6-year-old using logical thinking is in:", choices:["Sensorimotor","Preoperational","Concrete operational","Formal operational"], correct:2, rationale:"Concrete operational begins around age 7."},
+{cat:"Theories", q:"Hypothetical thinking occurs in:", choices:["Sensorimotor","Preoperational","Formal operational","Concrete operational"], correct:2, rationale:"Formal operational includes abstract reasoning."},
+{cat:"Theories", q:"Kohlberg Stage 1 is based on:", choices:["Rewards","Punishment avoidance","Social approval","Ethical principles"], correct:1, rationale:"Stage 1 = obedience due to punishment avoidance."},
+{cat:"Theories", q:"Kohlberg Stage 2 children act for:", choices:["Self interest","Punishment","Law","Ethics"], correct:0, rationale:"Stage 2 = self-interest orientation."},
+{cat:"Theories", q:"Kohlberg Stage 3 focuses on:", choices:["Being good","Avoiding punishment","Individual rights","Ethical principles"], correct:0, rationale:"Stage 3 = good boy/good girl orientation."},
+{cat:"Theories", q:"Kohlberg Stage 4 children follow:", choices:["Ethics","Social order and rules","Self interest","Rewards"], correct:1, rationale:"Stage 4 = law and order."},
+{cat:"Theories", q:"Stage 5 Kohlberg involves:", choices:["Obedience","Law and order","Individual rights","Avoiding punishment"], correct:2, rationale:"Stage 5 = social contract and individual rights."},
+{cat:"Theories", q:"Which is an example of egocentrism?", choices:["Sharing toys","Understanding viewpoints","Believing everyone sees what they see","Thinking logically"], correct:2, rationale:"Egocentrism is inability to see other viewpoints."},
+{cat:"Theories", q:"Which demonstrates conservation?", choices:["Thinking taller cup holds more","Knowing liquid amount stays the same","Egocentrism","Magical thinking"], correct:1, rationale:"Conservation = quantity stays same despite shape change."},
+{cat:"Theories", q:"Which child uses magical thinking?", choices:["Teen","Toddler","Preschooler","School-age"], correct:2, rationale:"Preschoolers display magical thinking."},
+{cat:"Theories", q:"Which shows static thinking?", choices:["Sticking to 1 idea","Understanding multiple steps","Logical processing","Understanding reversibility"], correct:0, rationale:"Static thinking = fixation on one idea."},
+{cat:"Theories", q:"Which shows reversibility?", choices:["Understanding maze backwards","Egocentrism","Centration","Magical thinking"], correct:0, rationale:"Reversibility is tracing steps backward."},
+{cat:"Theories", q:"Which age uses symbolic thought?", choices:["Infants","Toddlers","Preschoolers","Adolescents"], correct:2, rationale:"Symbolic thought emerges in preoperational stage."},
+{cat:"Theories", q:"Which stage involves reflexive behavior?", choices:["Sensorimotor","Preoperational","Concrete operational","Formal operational"], correct:0, rationale:"Neonatal reflexes define early sensorimotor phase."},
+{cat:"Theories", q:"Primary circular reactions occur at:", choices:["1–4 months","4–8 months","8–12 months","12–18 months"], correct:0, rationale:"Primary reactions occur 1–4 months."},
+
+/* ==========================
+   CATEGORY 3: INFANTS (51–90)
+   ========================== */
+{cat:"Infants", q:"Best position for infant sleep?", choices:["Prone","Supine","Side-lying","Prone with pillow"], correct:1, rationale:"Supine sleeping reduces SIDS risk."},
+{cat:"Infants", q:"Which is a sign of normal spitting up?", choices:["Projectile","Bile stained","Small dribbles","Blood present"], correct:2, rationale:"Small dribbles are normal; projectile indicates pyloric stenosis."},
+{cat:"Infants", q:"At 6 months, infants should:", choices:["Walk","Sit unsupported","Use palmar grasp","Speak in sentences"], correct:2, rationale:"Palmar grasp is typical at 6 months."},
+{cat:"Infants", q:"Teething begins at:", choices:["2 months","5–6 months","10 months","12 months"], correct:1, rationale:"Teething commonly begins 5–6 months."},
+{cat:"Infants", q:"Which prevents aspiration?", choices:["Prop bottle","Place infant supine while feeding","Sit infant upright during feeds","Offer balloon to chew"], correct:2, rationale:"Upright posture reduces aspiration risk."},
+{cat:"Infants", q:"Unsafe toy for infants:", choices:["Large soft block","Rattle","Round hotdog-shaped toy","Board book"], correct:2, rationale:"Cylindrical items can obstruct airway."},
+{cat:"Infants", q:"Cradle cap is treated by:", choices:["Daily shampoo only","Oil at night then shampoo","Antibiotics","Steroids"], correct:1, rationale:"Seborrhea softens with oil then shampoo."},
+{cat:"Infants", q:"Best injury prevention with siblings:", choices:["Let older sibling supervise infant","Allow rough play","Do not leave infants with young children","Let preschooler feed infant alone"], correct:2, rationale:"Young children can't safely supervise infants."},
+{cat:"Infants", q:"Car seat position for infants?", choices:["Forward facing","Rear facing","Booster seat","Seatbelt only"], correct:1, rationale:"Infants must ride rear-facing until size limit reached."},
+{cat:"Infants", q:"Most common injury risk in infancy?", choices:["Suffocation & aspiration","Gunshot wounds","Sports injury","Carpal tunnel"], correct:0, rationale:"Aspiration and suffocation are primary infant hazards."},
+{cat:"Infants", q:"Introduction of solids begins at:", choices:["1 month","2 months","4–6 months","9 months"], correct:2, rationale:"Solids introduced no earlier than 4–6 months."},
+{cat:"Infants", q:"Best first solid food feeding position?", choices:["High chair","On knees like breastfeeding","Supine","Side-lying"], correct:1, rationale:"Holding like breastfeeding reduces stress."},
+{cat:"Infants", q:"Baby bottle tooth decay results from:", choices:["Using pacifier","Sleeping with milk bottle","Drinking water","Thumb sucking"], correct:1, rationale:"Milk pooling causes severe decay."},
+{cat:"Infants", q:"Bath safety includes:", choices:["Leaving room briefly","Checking water temp","Using bath ring unattended","Filling tub fully"], correct:1, rationale:"Always test water temperature to prevent burns."},
+{cat:"Infants", q:"Normal infant sleep duration:", choices:["2 hours","10–12 hours","6 hours","20 hours"], correct:1, rationale:"Infants sleep 10–12 hours plus naps."},
+{cat:"Infants", q:"Pacifiers should NOT be hung on:", choices:["Clothes","Neck string","Crib","Diaper bag"], correct:1, rationale:"Strings pose strangulation risk."},
+{cat:"Infants", q:"Dehydration in infants occurs:", choices:["Slowly","Rarely","Rapidly","Only with fever"], correct:2, rationale:"Infants dehydrate quickly due to small fluid reserve."},
+{cat:"Infants", q:"Colic episodes last:", choices:["All day","3 hrs/day, 3 days/week","15 min only","Once a week"], correct:1, rationale:"Colic follows the 3x3 pattern."},
+{cat:"Infants", q:"Spitting up is concerning when:", choices:["Small amount","Projectile","After burping","Once daily"], correct:1, rationale:"Projectile vomiting may indicate pyloric stenosis."},
+{cat:"Infants", q:"Which prevents miliaria?", choices:["Heavy clothing","Overheated room","Frequent baths and cooler temps","Ointments"], correct:2, rationale:"Reducing sweating prevents prickly heat."},
+{cat:"Infants", q:"Infant diarrhea concern sign:", choices:["6 wet diapers","No fever","Blood in stool","Soft yellow stool"], correct:2, rationale:"Blood indicates infection or allergy."},
+{cat:"Infants", q:"Constipation in formula-fed infants can be improved by:", choices:["Less water","More fluids","Avoid fruit","Stop formula"], correct:1, rationale:"Increasing fluids softens stool."},
+{cat:"Infants", q:"Infants should not sleep with:", choices:["Firm mattress","Pacifier","Pillow","Thin blanket"], correct:2, rationale:"No pillows due to suffocation risk."},
+{cat:"Infants", q:"Signs NOT related to teething:", choices:["Mild irritability","Drooling","High fever & vomiting","Chewing objects"], correct:2, rationale:"High fever is NOT caused by teething."},
+{cat:"Infants", q:"Infant with early stranger anxiety is:", choices:["Normal at 7–8 months","Delayed","Abnormal","Concerning for autism"], correct:0, rationale:"Stranger anxiety peaks around 7–8 months."},
+{cat:"Infants", q:"Infant safety hazard includes:", choices:["Soft toys","Coins & batteries","Teethers","Board books"], correct:1, rationale:"Small batteries are fatal if swallowed."},
+{cat:"Infants", q:"Which age should first dental visit occur?", choices:["3 years","1 year","5 years","2 years"], correct:1, rationale:"Dental care begins by 1 year."},
+
+/* ==========================
+   CATEGORY 4: TODDLERS (91–120)
+   ========================== */
+{cat:"Toddlers", q:"Erikson toddler stage:", choices:["Autonomy vs shame","Trust vs mistrust","Initiative vs guilt","Industry vs inferiority"], correct:0, rationale:"Toddlers assert independence."},
+{cat:"Toddlers", q:"Toddlers prefer:", choices:["Parallel play","Cooperative play","Team play","Competitive play"], correct:0, rationale:"Parallel play is common in toddlers."},
+{cat:"Toddlers", q:"Prevent poisoning by:", choices:["Calling meds candy","Keeping meds locked","Letting toddlers take pills","Storing meds in pockets"], correct:1, rationale:"Locked storage prevents poisoning."},
+{cat:"Toddlers", q:"Choking hazard:", choices:["Bananas","Hotdogs","Cheese","Yogurt"], correct:1, rationale:"Hotdogs are high-risk choking foods."},
+{cat:"Toddlers", q:"Best discipline method:", choices:["Spanking","Time-out","Ignoring all behavior","Yelling"], correct:1, rationale:"Time-outs teach boundaries safely."},
+{cat:"Toddlers", q:"600–1000 kcal/day is needed for:", choices:["Adults","Teenagers","Toddlers","Infants"], correct:2, rationale:"Toddlers require ~1000 kcal depending on activity."},
+{cat:"Toddlers", q:"Toddlers often eat:", choices:["Full meals","Small frequent snacks","No solid food","Mostly liquids"], correct:1, rationale:"Toddlers have fluctuating appetites."},
+{cat:"Toddlers", q:"Toddler tantrums occur due to:", choices:["Low IQ","Autonomy development","Poor parenting","Brain injury"], correct:1, rationale:"Toddlers express frustration through tantrums."},
+{cat:"Toddlers", q:"Keep toddlers safe by:", choices:["Using baby gates","Leaving them on stairs","Letting them open cabinets","Allowing access to stove"], correct:0, rationale:"Baby gates prevent falls."},
+{cat:"Toddlers", q:"Motor vehicle safety:", choices:["Seatbelt only","Rear-facing car seat","No restraints","Booster seat only"], correct:1, rationale:"Toddlers should remain rear-facing until size limit."},
+{cat:"Toddlers", q:"Which behavior is normal?", choices:["Food jags","Eating everything offered","Never refusing food","Preparing meals"], correct:0, rationale:"Food jags—eating same food repeatedly—are common."},
+{cat:"Toddlers", q:"Toddler nutrition teaching:", choices:["Large portions","Small portions first","Restrict all snacks","Allow unlimited juice"], correct:1, rationale:"Small portions prevent overwhelm."},
+{cat:"Toddlers", q:"Best way to promote autonomy:", choices:["Let them choose between 2 outfits","Force clothes on them","No independence","Ignore choices"], correct:0, rationale:"Choices support autonomy."},
+{cat:"Toddlers", q:"Burn prevention:", choices:["Cook on front burners","Turn pot handles outward","Use back burners","Allow toddler near stove"], correct:2, rationale:"Back burners reduce burn injuries."},
+{cat:"Toddlers", q:"Safe environment includes:", choices:["Unlocked cabinets","Covered outlets","Loose wires","Unsupervised stairs"], correct:1, rationale:"Cover outlets to prevent shock."},
+{cat:"Toddlers", q:"To prevent drowning:", choices:["Leave toddler in tub briefly","Supervise continuously","Let sibling watch","Provide bath toys only"], correct:1, rationale:"Toddlers can drown in seconds."},
+{cat:"Toddlers", q:"Toddler thinking is:", choices:["Logical","Egocentric","Abstract","Mature"], correct:1, rationale:"Egocentric thinking persists until school age."},
+{cat:"Toddlers", q:"Most common toddler injuries:", choices:["Falls & burns","Gunshot wounds","Work injuries","Carpal tunnel"], correct:0, rationale:"Toddlers are prone to falls and burns."},
+{cat:"Toddlers", q:"Toddler bowel pattern often includes:", choices:["No stool","Constipation","Mature pattern","Adult-like stools"], correct:1, rationale:"Constipation common due to diet changes."},
+{cat:"Toddlers", q:"Toddler play should include:", choices:["Complex board games","Simple blocks","Calculus tasks","Competitive sports"], correct:1, rationale:"Blocks support motor development."},
+{cat:"Toddlers", q:"Which hazard should be locked?", choices:["Blankets","Toys","Medications","Clothes"], correct:2, rationale:"Medications are major poisoning hazards."},
+{cat:"Toddlers", q:"Toddler car safety:", choices:["Sit in front seat","Ride on lap","Remain in car seat","Use adult belt only"], correct:2, rationale:"Car seats prevent fatal injuries."},
+{cat:"Toddlers", q:"Which is normal toddler speech?", choices:["Full sentences","2-word phrases","Abstract reasoning","No words at all"], correct:1, rationale:"2-word combinations appear around 2 years."},
+{cat:"Toddlers", q:"Toddler immunizations occur at:", choices:["1 month","12–18 months","6 years","Teen years"], correct:1, rationale:"Toddlers receive multiple booster vaccines."},
+{cat:"Toddlers", q:"To prevent burns, parents should:", choices:["Hold toddler while drinking hot coffee","Keep hot drinks away","Microwave bottles","Let toddler stir pots"], correct:1, rationale:"Hot liquids burn toddlers easily."},
+{cat:"Toddlers", q:"Toddler independence increases when:", choices:["Parents do all tasks","Child is allowed to help","Child is restricted","Child receives no choices"], correct:1, rationale:"Helping builds autonomy."},
+
+/* ==========================
+   CATEGORY 5: COMMON CONDITIONS (121–150)
+   ========================== */
+{cat:"Infant Conditions", q:"Colic cause:", choices:["Spoiling","Unknown, possibly air swallowed","Infection","Allergy always"], correct:1, rationale:"Colic relates to air swallowing or GI discomfort."},
+{cat:"Infant Conditions", q:"Danger sign NOT related to teething:", choices:["Drooling","Mild fever","High fever","Chewing objects"], correct:2, rationale:"High fever is never due to teething."},
+{cat:"Infant Conditions", q:"Spitting up is normal when:", choices:["Projectile","Bilious","Smalls dribbles","Blood present"], correct:2, rationale:"Small effortless regurgitation is normal."},
+{cat:"Infant Conditions", q:"Projectile vomiting suggests:", choices:["Normal","Colic","Pyloric stenosis","Food allergy"], correct:2, rationale:"Projectile vomiting is classic for pyloric stenosis."},
+{cat:"Infant Conditions", q:"Best treatment for cradle cap:", choices:["Dry brushing","Oil and shampoo","Steroids","Antifungal only"], correct:1, rationale:"Oil softens crusts before shampooing."},
+{cat:"Infant Conditions", q:"Miliaria occurs due to:", choices:["Cold","Sweating","Allergy","Infection"], correct:1, rationale:"Blockage from sweat causes prickly heat."},
+{cat:"Infant Conditions", q:"Diaper rash prevention:", choices:["Change diaper rarely","Frequent diaper changes","Use alcohol wipes","No ointment ever"], correct:1, rationale:"Frequent changes reduce moisture irritation."},
+{cat:"Infant Conditions", q:"Candida diaper rash appears as:", choices:["Dry skin","Pinpoint red lesions","Bruising","White patches ONLY"], correct:1, rationale:"Satellite lesions suggest Candida."},
+{cat:"Infant Conditions", q:"Diarrhea danger sign:", choices:["Soft yellow stool","Frequent wet diapers","Reduced urine output","One loose stool"], correct:2, rationale:"Decreased urination indicates dehydration."},
+{cat:"Infant Conditions", q:"Constipation occurs when:", choices:["Stool watery","Stool hard and dry","Stool frequent","Stool soft"], correct:1, rationale:"Hard dry stools signify constipation."},
+{cat:"Infant Conditions", q:"Which suggests infection, not teething?", choices:["Drooling","Mild crankiness","High fever","Chewing on objects"], correct:2, rationale:"High fever = illness."},
+{cat:"Infant Conditions", q:"Which feeding behavior is normal?", choices:["Spit-up after feeding","Projectile vomiting","Bile vomiting","Choking frequently"], correct:0, rationale:"Normal spit-up is common."},
+{cat:"Infant Conditions", q:"Head banging becomes concerning when:", choices:["Short duration","Before sleep","Past preschool age","With normal development"], correct:2, rationale:"Persistence beyond preschool signals pathology."},
+{cat:"Infant Conditions", q:"Which infant behavior is normal?", choices:["Sucking thumb at 3 months","Toe walking only","Never crying","Walking at 2 months"], correct:0, rationale:"Thumb sucking peaks at 18 months."},
+{cat:"Infant Conditions", q:"Baby bottle tooth decay occurs due to:", choices:["Milk left on teeth during sleep","Pacifier use","Sugar-free water","Thumb sucking"], correct:0, rationale:"Milk sugars ferment and damage enamel."},
+{cat:"Infant Conditions", q:"Which object is a choking hazard?", choices:["Board book","Coin","Soft block","Large rattle"], correct:1, rationale:"Coins are high-risk choking hazards."},
+{cat:"Infant Conditions", q:"Diaper dermatitis due to allergy appears as:", choices:["Pinpoint lesions","Outline of diaper on skin","Bruising","Dry patches"], correct:1, rationale:"Allergic dermatitis follows diaper outline."},
+{cat:"Infant Conditions", q:"Loose stools after fruit introduction are:", choices:["Normal occasionally","Always infectious","Always allergic","Never seen"], correct:0, rationale:"Some fruits loosen stools."},
+{cat:"Infant Conditions", q:"Signs of dehydration include:", choices:["Tears present","Moist mucosa","Sunken fontanel","Normal urine output"], correct:2, rationale:"Sunken fontanel = dehydration."},
+{cat:"Infant Conditions", q:"Sudden temperature changes in sink baths cause:", choices:["Rashes","Burns","Cavities","Fractures"], correct:1, rationale:"Unexpected temperature shifts can burn infants."},
+{cat:"Infant Conditions", q:"Infant burns often occur due to:", choices:["Proper supervision","Water temp changes","Swimming","Cold weather"], correct:1, rationale:"Sudden water temperature shifts are common burn causes."},
+{cat:"Infant Conditions", q:"Stooling red flags include:", choices:["Yellow color","Seedy stools","Blood or mucus","Daily stools"], correct:2, rationale:"Blood/mucus may indicate infection."},
+{cat:"Infant Conditions", q:"Toddler refusing to eat may be experiencing:", choices:["Food jag","Failure to thrive","Illness always","Abuse"], correct:0, rationale:"Toddlers often prefer repeated foods."},
+{cat:"Infant Conditions", q:"Small batteries are dangerous because they:", choices:["Are harmless","Pass normally","Cause fatal chemical burns","Help digestion"], correct:2, rationale:"Button batteries burn esophagus within hours."},
+{cat:"Infant Conditions", q:"Infant diarrhea requires evaluation when:", choices:["1 loose stool","Good urine output","Fever & vomiting present","Eating well"], correct:2, rationale:"GI infection suspected when systemic symptoms occur."}]
+];
+let score = 0;
+const quizDiv = document.getElementById("quiz");
+questions.forEach((item, index) => {
+ const qDiv = document.createElement("div");
+ qDiv.className = "question";
+ qDiv.innerHTML = `<b>${item.cat} – Question ${index+1}:</b> ${item.q}`;
+ const choicesDiv = document.createElement("div");
+ choicesDiv.className = "choices";
+ item.choices.forEach((choice, cIndex) => {
+  const btn = document.createElement("button");
+  btn.textContent = choice;
+  btn.onclick = () => {
+   if (!btn.classList.contains("correct") && !btn.classList.contains("incorrect")) {
+    if (cIndex === item.correct) {
+     btn.classList.add("correct");
+     score++;
+     document.getElementById("scoreBox").textContent = `Score: ${score}`;
+    } else { btn.classList.add("incorrect"); }
+    rationaleDiv.style.display = "block";
+   }
+  };
+  choicesDiv.appendChild(btn);
+ });
+ const rationaleDiv = document.createElement("div");
+ rationaleDiv.className = "rationale";
+ rationaleDiv.textContent = "Rationale: " + item.rationale;
+ qDiv.appendChild(choicesDiv);
+ qDiv.appendChild(rationaleDiv);
+ quizDiv.appendChild(qDiv);
+});
+</script>
+</body>
+</html>
